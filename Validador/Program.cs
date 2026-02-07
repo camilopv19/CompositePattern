@@ -15,10 +15,10 @@ var datosEntrada = new DatosEntrada(
 
 var validadores = new GrupoDeValidadores<DatosEntrada>()
     .AñadirValidador(new ValidadorCurp())
-    .AñadirValidador(new ValidadorNombres());
-    // .AñadirValidador(new ValidadorFechaNacimiento())
-    // .AñadirValidador(new ValidadorSexo())
-    // .AñadirValidador(new ValidadorEsMexicano());
+    .AñadirValidador(new ValidadorNombres())
+    .AñadirValidador(new ValidadorFechaNacimiento())
+    .AñadirValidador(new ValidadorEstadoNacimiento())
+    .AñadirValidador(new ValidadorSexo());
 
 var errores = validadores.ValidarCurp(datosEntrada);
     Console.WriteLine($"Errores encontrados ({errores.Length}): {string.Join(", ", errores)}");

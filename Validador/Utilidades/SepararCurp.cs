@@ -1,6 +1,6 @@
 namespace Validador.Utilidades;
 
-public enum TipoDeSeccion
+public enum  TipoDeSeccion
 {
     PrimerasLetras = 0,
     FechaNacimiento = 1,

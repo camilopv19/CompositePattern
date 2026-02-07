@@ -9,5 +9,5 @@ public enum TipoDeError
     ConsonantesInternasInvalidas,
     FechaNacimientoInvalida,
     SexoInvalido,
-    EsMexicanoInvalido 
+    EstadoNacimientoInvalido 
 }

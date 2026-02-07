@@ -7,6 +7,7 @@ namespace Validador.Implementaciones;
 
 public sealed class ValidadorNombres : IValidador<DatosEntrada>
 {
+    private readonly string Error_Nombres_Invalidos = GeneradorDeErrores.ObtenerMensajeDeError(TipoDeError.NombresInvalidos);
     public IEnumerable<string> Validar(DatosEntrada datosEntrada)
     {
         var errores = new List<string>();
@@ -14,7 +15,7 @@ public sealed class ValidadorNombres : IValidador<DatosEntrada>
         // No debe estar vacío
         if (datosEntrada.nombres.Length == 0)
         {
-            yield return GeneradorDeErrores.ObtenerMensajeDeError(TipoDeError.NombresInvalidos);
+            yield return Error_Nombres_Invalidos;
         }
         
         var nombresSeparados = datosEntrada.nombres.Split(' ');
@@ -27,34 +28,53 @@ public sealed class ValidadorNombres : IValidador<DatosEntrada>
             if (nombresSeparados.Length > 1 && nomresAIgnorar.Contains(primerNombre))
             {
                 primerNombre = nombresSeparados[1]; // El segundo nombre (del compuesto) es el que se usará para la validación
-                if (primerNombre.Length == 0)
+                if (primerNombre.Length < 2)
                 {
-                    errores.Add(GeneradorDeErrores.ObtenerMensajeDeError(TipoDeError.NombresInvalidos));
+                    errores.Add(Error_Nombres_Invalidos);
                 }
             }
             
-            // Validación appellidos: No deben estar vacíos
-             if (datosEntrada.apellidoPaterno.Length == 0)
-             {
-                 errores.Add(GeneradorDeErrores.ObtenerMensajeDeError(TipoDeError.ApellidoPaternoInvalido));
-             }
-             
-             if (datosEntrada.apellidoMaterno.Length == 0)
-             {
-                 errores.Add(GeneradorDeErrores.ObtenerMensajeDeError(TipoDeError.ApellidoMaternoInvalido));
-             }
-             
+            // Validación apellidos: No deben estar vacíos o muy cortos (menos de 2 caracteres)
+            var apellidoPaternoInvalido = datosEntrada.apellidoPaterno.Length < 2;
+            var apellidoMaternoInvalido = datosEntrada.apellidoMaterno.Length < 2;
+            var primerNombreInvalido = primerNombre.Length < 2;
+
+            if (apellidoPaternoInvalido)
+            {
+                errores.Add(GeneradorDeErrores.ObtenerMensajeDeError(TipoDeError.ApellidoPaternoInvalido));
+            }
+
+            if (apellidoMaternoInvalido)
+            {
+                errores.Add(GeneradorDeErrores.ObtenerMensajeDeError(TipoDeError.ApellidoMaternoInvalido));
+            }
+            
+            if (primerNombreInvalido && !errores.Contains(Error_Nombres_Invalidos))
+            {
+                errores.Add(Error_Nombres_Invalidos);
+            }
+
+            // Solo validar CURP si los campos requeridos no están vacíos
+            if (apellidoPaternoInvalido || apellidoMaternoInvalido || primerNombreInvalido)
+            {
+                foreach (var error in errores)
+                {
+                    yield return error;
+                }
+                yield break;
+            }
+
             // Validación de las primeras 4 letras de la CURP:
-            var fusionarIniciales =  Obtener4CaracteresDelNombreCompleto(datosEntrada, primerNombre);
+            var fusionarIniciales = Obtener4CaracteresDelNombreCompleto(datosEntrada, primerNombre);
             if (fusionarIniciales != datosEntrada.curp.SepararCurpEnPartes(TipoDeSeccion.PrimerasLetras))
             {
-                errores.Add(GeneradorDeErrores.ObtenerMensajeDeError(TipoDeError.NombresInvalidos));
+                errores.Add(Error_Nombres_Invalidos);
             }
-             
+
             // Validación de las primeras 3 letras de las consonantes internas de la CURP:
-            var obtenerConsonantes =  Obtener3ConsonantesDelNombreCompleto(datosEntrada, primerNombre);
-            
-            // Remover la posible  existencia de '0', el cual se usa como convención de ausencia de vocales, indicará si
+            var obtenerConsonantes = Obtener3ConsonantesDelNombreCompleto(datosEntrada, primerNombre);
+
+            // Remover la posible existencia de '0', el cual se usa como convención de ausencia de vocales, indicará si
             // hay errores según la comparación de tamaño del arreglo resultante con el valor esperado de 3
             // consonantes internas
             var sinConsonantes = obtenerConsonantes.Replace("0", "").Length < 3;

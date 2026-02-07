@@ -13,7 +13,7 @@ public static class GeneradorDeErrores
         TipoDeError.ConsonantesInternasInvalidas => "Consonantes internas Inválidas",
         TipoDeError.FechaNacimientoInvalida => "Fecha de Nacimiento Invalida",
         TipoDeError.SexoInvalido => "Sexo Invalido",
-        TipoDeError.EsMexicanoInvalido => "Es Mexicano Invalido",
+        TipoDeError.EstadoNacimientoInvalido => "Es Mexicano Invalido",
         _ => "Error Desconocido"
     };
 }
