@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validador", "Validador\Validador.csproj", "{713147DA-8AF6-4050-A99F-F6FCD258ED1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PruebasUnitariasValidador", "PruebasUnitariasValidador\PruebasUnitariasValidador.csproj", "{883F9BEB-1275-4E94-BFB7-B71F57805138}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{713147DA-8AF6-4050-A99F-F6FCD258ED1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{713147DA-8AF6-4050-A99F-F6FCD258ED1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{713147DA-8AF6-4050-A99F-F6FCD258ED1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{713147DA-8AF6-4050-A99F-F6FCD258ED1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{883F9BEB-1275-4E94-BFB7-B71F57805138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{883F9BEB-1275-4E94-BFB7-B71F57805138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{883F9BEB-1275-4E94-BFB7-B71F57805138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{883F9BEB-1275-4E94-BFB7-B71F57805138}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
