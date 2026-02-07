@@ -6,6 +6,7 @@ public enum TipoDeError
     ApellidoPaternoInvalido,
     ApellidoMaternoInvalido,
     NombresInvalidos,
+    ConsonantesInternasInvalidas,
     FechaNacimientoInvalida,
     SexoInvalido,
     EsMexicanoInvalido 

@@ -4,8 +4,8 @@ using Validador.Implementaciones;
 using Validador.Modelos;
 
 var datosEntrada = new DatosEntrada(
-    curp: "GARC850101HDFRRL9",
-    nombres: "",
+    curp: "GALA850101HDFRRL19",
+    nombres: "José Antonio",
     apellidoPaterno: "Garcia",
     apellidoMaterno: "Lopez",
     fechaNacimiento: "1985-01-01T00:00:00Z",
@@ -16,8 +16,6 @@ var datosEntrada = new DatosEntrada(
 var validadores = new GrupoDeValidadores<DatosEntrada>()
     .AñadirValidador(new ValidadorCurp())
     .AñadirValidador(new ValidadorNombres());
-    // .AñadirValidador(new ValidadorApellidoPaterno())
-    // .AñadirValidador(new ValidadorApellidoMaterno())
     // .AñadirValidador(new ValidadorFechaNacimiento())
     // .AñadirValidador(new ValidadorSexo())
     // .AñadirValidador(new ValidadorEsMexicano());
