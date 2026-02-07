@@ -4,7 +4,7 @@ using Validador.Implementaciones;
 using Validador.Modelos;
 
 var datosEntrada = new DatosEntrada(
-    curp: "GALA850101HDFRRL19",
+    curp: "GALA850101HDFRPN19",
     nombres: "José Antonio",
     apellidoPaterno: "Garcia",
     apellidoMaterno: "Lopez",
