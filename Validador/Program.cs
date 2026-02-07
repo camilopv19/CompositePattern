@@ -4,18 +4,18 @@ using Validador.Implementaciones;
 using Validador.Modelos;
 
 var datosEntrada = new DatosEntrada(
-    curp: "GARC850101HDFRRL09",
-    nombres: "Juan Carlos",
+    curp: "GARC850101HDFRRL9",
+    nombres: "",
     apellidoPaterno: "Garcia",
     apellidoMaterno: "Lopez",
-    fechaNacimiento: "1985-01-01",
+    fechaNacimiento: "1985-01-01T00:00:00Z",
     sexo: Sexo.Masculino,
     esMexicano: true
 );
 
 var validadores = new GrupoDeValidadores<DatosEntrada>()
-    .AñadirValidador(new ValidadorCurp());
-    // .AñadirValidador(new ValidadorNombres())
+    .AñadirValidador(new ValidadorCurp())
+    .AñadirValidador(new ValidadorNombres());
     // .AñadirValidador(new ValidadorApellidoPaterno())
     // .AñadirValidador(new ValidadorApellidoMaterno())
     // .AñadirValidador(new ValidadorFechaNacimiento())
@@ -23,5 +23,5 @@ var validadores = new GrupoDeValidadores<DatosEntrada>()
     // .AñadirValidador(new ValidadorEsMexicano());
 
 var errores = validadores.ValidarCurp(datosEntrada);
-    Console.WriteLine($"Errores encontrados: {string.Join(", ", errores)}");
+    Console.WriteLine($"Errores encontrados ({errores.Length}): {string.Join(", ", errores)}");
 

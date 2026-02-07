@@ -18,7 +18,7 @@ public sealed class GrupoDeValidadores<T> : IValidador<T>
         foreach (var validador in _validadores)
         {
             var errorDelValidador = validador.Validar(entrada);
-            if (errorDelValidador != null) _errores.Add(errorDelValidador.FirstOrDefault());
+            if (errorDelValidador.FirstOrDefault() != null) _errores.Add(errorDelValidador.FirstOrDefault());
         }
         return _errores;
     }
